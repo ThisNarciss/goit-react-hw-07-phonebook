@@ -7,14 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operations';
+import { errorNotify } from 'utils/notification';
 
 export function App() {
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
-
-  console.log(error);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -36,6 +35,7 @@ export function App() {
         )}
         {isLoading && !error && <b>Request in progress...</b>}
       </Section>
+      {error && errorNotify(error)}
     </Container>
   );
 }

@@ -9,3 +9,7 @@ export function failureNumberNotify(contact) {
 export function successNotify(contact) {
   Notify.success(`${contact.name} add to the contacts`);
 }
+
+export function errorNotify(error) {
+  Notify.failure(`${error}`);
+}
