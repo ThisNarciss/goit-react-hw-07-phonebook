@@ -1,12 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addData, deleteData, fetchData } from 'api/phonebook-api';
 
-export const fetchContact = createAsyncThunk(
+export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   (_, thunkAPI) => {
     return fetchData()
       .then(contacts => contacts)
-      .catch(error => thunkAPI.rejectWithValue(error.message));
+      .catch(error => {
+        console.log(error);
+        return thunkAPI.rejectWithValue(error.message);
+      });
   }
 );
 

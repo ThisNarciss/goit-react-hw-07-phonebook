@@ -6,7 +6,7 @@ import { ChildrenBox, Container, Notification } from './App.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import { useEffect } from 'react';
-import { fetchContact } from 'redux/operations';
+import { fetchContacts } from 'redux/operations';
 
 export function App() {
   const contacts = useSelector(selectContacts);
@@ -17,7 +17,7 @@ export function App() {
   console.log(error);
 
   useEffect(() => {
-    dispatch(fetchContact());
+    dispatch(fetchContacts());
   }, [dispatch]);
 
   return (
