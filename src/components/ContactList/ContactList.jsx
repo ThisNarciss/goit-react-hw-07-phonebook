@@ -1,12 +1,13 @@
 import { BiUser } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
-import { getContacts, getFilter } from 'redux/selectors';
+
+import { deleteContact } from 'redux/operations';
+import { selectContacts, selectFilter } from 'redux/selectors';
 import { Item, List, ButtonDel, Text } from './ContactList.styled';
 
 export const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const onBtnDeleteClick = id => dispatch(deleteContact(id));
@@ -20,12 +21,12 @@ export const ContactList = () => {
 
   return (
     <List>
-      {filteredContacts.map(({ id, name, number }) => {
+      {filteredContacts.map(({ id, name, phone }) => {
         return (
           <Item key={id}>
             <BiUser />
             <Text>
-              {name}: {number}
+              {name}: {phone}
             </Text>
             <ButtonDel
               type="button"

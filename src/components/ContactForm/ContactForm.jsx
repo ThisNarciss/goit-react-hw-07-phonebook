@@ -10,17 +10,18 @@ import {
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+
 import {
   failureNameNotify,
   failureNumberNotify,
   successNotify,
 } from 'utils/notification';
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(30).trim().required(),
-  number: yup.string().min(12).max(13).trim().required(),
+  phone: yup.string().min(12).max(13).trim().required(),
 });
 
 const nameInputId = nanoid();
@@ -28,19 +29,20 @@ const numberInputId = nanoid();
 
 const initialValue = {
   name: '',
-  number: '',
+  phone: '',
 };
 
 export const ContactForm = () => {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const addNewContact = obj => {
+    console.log(obj);
     const findName = contacts.find(
       ({ name }) => name.toLowerCase() === obj.name.toLowerCase()
     );
     const findNumber = contacts.find(
-      ({ number }) => number.toLowerCase() === obj.number.toLowerCase()
+      ({ phone }) => phone.toLowerCase() === obj.phone.toLowerCase()
     );
 
     if (findName) {
@@ -86,12 +88,12 @@ export const ContactForm = () => {
           <FormInput
             id={numberInputId}
             type="tel"
-            name="number"
+            name="phone"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-          <Error name="number" component="p" />
+          <Error name="phone" component="p" />
         </InputBox>
 
         <ButtonAdd type="submit">Add contact</ButtonAdd>
