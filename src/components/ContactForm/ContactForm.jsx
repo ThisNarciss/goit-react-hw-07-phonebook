@@ -11,11 +11,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  failureNameNotify,
-  failureNumberNotify,
-  successNotify,
-} from 'utils/notification';
+import { failureNameNotify, failureNumberNotify } from 'utils/notification';
 import { selectContacts } from 'redux/selectors';
 import { addContact } from 'redux/operations';
 
@@ -37,7 +33,6 @@ export const ContactForm = () => {
   const dispatch = useDispatch();
 
   const addNewContact = obj => {
-    console.log(obj);
     const findName = contacts.find(
       ({ name }) => name.toLowerCase() === obj.name.toLowerCase()
     );
@@ -53,7 +48,6 @@ export const ContactForm = () => {
       failureNumberNotify(findNumber);
       return;
     }
-    successNotify(obj);
 
     dispatch(addContact(obj));
   };

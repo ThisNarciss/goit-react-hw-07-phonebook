@@ -1,11 +1,13 @@
 // import { nanoid } from 'nanoid';
 import { createSlice } from '@reduxjs/toolkit';
+import { successNotify } from 'utils/notification';
 import { addContact, deleteContact, fetchContacts } from './operations';
 
 const contactsInitialState = {
   items: [],
   isLoading: false,
   error: null,
+  isDeleting: false,
 };
 
 function handlePending(state) {
@@ -21,29 +23,6 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
 
-  // reducers: {
-  //   addContact: {
-  //     reducer(state, { payload }) {
-  //       state.items.push(payload);
-  //       // return { ...state, items: [...state.items, payload] };
-  //     },
-  //     prepare(obj) {
-  //       return {
-  //         payload: {
-  //           id: nanoid(),
-  //           ...obj,
-  //         },
-  //       };
-  //     },
-  //   },
-  //   deleteContact(state, { payload }) {
-  //     state.items = state.items.filter(item => item.id !== payload);
-  //     // return {
-  //     //   ...state,
-  //     //   items: state.items.filter(item => item.id !== payload),
-  //     // };
-  //   },
-  // },
   extraReducers: {
     [fetchContacts.pending](state) {
       handlePending(state);
@@ -64,21 +43,24 @@ const contactsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.items.push(payload);
+      successNotify(payload);
     },
     [addContact.rejected](state, { payload }) {
       handleRejected(state, payload);
     },
 
     [deleteContact.pending](state) {
-      handlePending(state);
+      state.isDeleting = true;
     },
     [deleteContact.fulfilled](state, { payload: { id } }) {
       state.isLoading = false;
+      state.isDeleting = false;
       state.error = null;
       state.items = state.items.filter(item => item.id !== id);
     },
     [deleteContact.rejected](state, { payload }) {
-      handleRejected(state, payload);
+      state.isDeleting = false;
+      state.error = payload;
     },
   },
 });

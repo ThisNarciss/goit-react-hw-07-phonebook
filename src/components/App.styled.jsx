@@ -8,6 +8,7 @@ export const Container = styled.div`
     rgba(51, 45, 253, 1) 100%
   );
   display: flex;
+  height: 100vh;
 `;
 export const ChildrenBox = styled.div`
   display: flex;
@@ -23,4 +24,5 @@ export const Notification = styled.p`
   border-radius: 5px;
   border: 1px solid red;
   color: red;
+  margin-bottom: 20px;
 `;

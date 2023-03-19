@@ -8,6 +8,7 @@ import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operations';
 import { errorNotify } from 'utils/notification';
+import { Loader } from './Loader/Loader';
 
 export function App() {
   const contacts = useSelector(selectContacts);
@@ -33,7 +34,7 @@ export function App() {
         ) : (
           <Notification>There are no contacts in the phone book</Notification>
         )}
-        {isLoading && !error && <b>Request in progress...</b>}
+        {isLoading && !error && <Loader />}
       </Section>
       {error && errorNotify(error)}
     </Container>
