@@ -1,8 +1,5 @@
 import { ContactItem } from 'components/ContactItem/ContactItem';
-// import { BiUser } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
-
-// import { deleteContact } from 'redux/operations';
 import { selectContacts, selectFilter } from 'redux/selectors';
 import { List } from './ContactList.styled';
 
