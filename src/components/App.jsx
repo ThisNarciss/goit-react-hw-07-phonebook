@@ -20,6 +20,11 @@ export function App() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (!error) return;
+    errorNotify(error);
+  }, [error]);
+
   return (
     <Container>
       <Section title="Phonebook">
@@ -36,7 +41,6 @@ export function App() {
         )}
         {isLoading && !error && <Loader />}
       </Section>
-      {error && errorNotify(error)}
     </Container>
   );
 }

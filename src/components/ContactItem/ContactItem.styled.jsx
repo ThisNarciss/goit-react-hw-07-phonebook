@@ -12,6 +12,7 @@ export const Text = styled.p``;
 export const ButtonDel = styled.button`
   display: flex;
   align-items: center;
+  width: 70px;
   padding: 2px 15px;
   border-radius: 5px;
   background-color: #2248c3;

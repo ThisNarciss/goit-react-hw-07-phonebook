@@ -15,14 +15,14 @@ export function Loader() {
 export function LoaderBtn() {
   return (
     <Oval
-      height={10}
-      width={10}
+      height={11}
+      width={11}
       color="white"
       visible={true}
       ariaLabel="oval-loading"
       secondaryColor="#blue"
-      strokeWidth={2}
-      strokeWidthSecondary={2}
+      strokeWidth={4}
+      strokeWidthSecondary={4}
     />
   );
 }
