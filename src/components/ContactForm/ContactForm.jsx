@@ -10,10 +10,9 @@ import {
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { failureNameNotify, failureNumberNotify } from 'utils/notification';
-import { selectContacts } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+import { addContact } from 'redux/contacts/operations';
+import { selectContacts } from 'redux/contacts/selectors';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(30).trim().required(),

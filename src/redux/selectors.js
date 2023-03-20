@@ -1,5 +1,12 @@
-export const selectFilter = state => state.filter;
-export const selectContacts = state => state.contacts.items;
-export const selectIsLoading = state => state.contacts.isLoading;
-export const selectIsDeleting = state => state.contacts.isDeleting;
-export const selectError = state => state.contacts.error;
+const { createSelector } = require('@reduxjs/toolkit');
+const { selectContacts } = require('redux/contacts/selectors');
+const { selectFilter } = require('redux/filter/selectors');
+
+export const selectFilterContacts = createSelector(
+  [selectFilter, selectContacts],
+
+  (filter, contacts) =>
+    contacts.filter(item =>
+      item.name.toLowerCase().includes(filter.toLowerCase())
+    )
+);

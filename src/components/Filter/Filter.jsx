@@ -3,7 +3,7 @@ import { FilterBox, FilterInput, FilterLabel } from './Filter.styled';
 
 import { IconSearch } from './Filter.styled';
 import { useDispatch } from 'react-redux';
-import { filterContacts } from 'redux/filterSlice';
+import { filterContacts } from 'redux/filter/filterSlice';
 
 const filterInputId = nanoid();
 
