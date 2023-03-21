@@ -3,8 +3,8 @@ import { Oval, ThreeCircles } from 'react-loader-spinner';
 export function Loader() {
   return (
     <ThreeCircles
-      height="80"
-      width="80"
+      height="70"
+      width="70"
       color="white"
       visible={true}
       ariaLabel="three-circles-rotating"
@@ -15,8 +15,8 @@ export function Loader() {
 export function LoaderBtn() {
   return (
     <Oval
-      height={11}
-      width={11}
+      height={12}
+      width={12}
       color="white"
       visible={true}
       ariaLabel="oval-loading"
